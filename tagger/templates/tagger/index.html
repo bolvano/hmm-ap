@@ -5,11 +5,33 @@
     <title>HMM</title>
 </head>
 <body>
+{% if tokens %}
+input string: {{address}} <br>
+result tokens: {{tokens}} <br>
+	<form method="POST" action="">{% csrf_token %}
+    	<input type="hidden" name="address" value="{{address}}">
+    	<input type="hidden" name="tokens" value="{{tokens}}">
+		tagged:
+{% for t in tagged %}
+{{t.0}}
+    	<select name="token_{{ forloop.counter }}">
+    {% for k,v in tags %}
+        	<option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+    {% endfor %}
+		</select>
+{% endfor %}<br>
+    	<input type="submit">
+    </form>
+{% else %}
     <form method="POST" action="">{% csrf_token %}
         Адресная строка:<br>
         <input type="text" name="address"><br>
         <input type="submit">
-
     </form>
+{% endif %}
+	<br>
+	<hr>
+	<br>
+{{corpus}}
 </body>
 </html>
