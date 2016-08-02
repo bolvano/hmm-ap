@@ -1,0 +1,17 @@
+*.pyc
+__pycache__
+myvenv
+db.sqlite3
+/static
+/tagger/migrations/*
+cotts.sql
+flats.sql
+raw.txt
+raw2.txt
+reader.py
+tagged.json
+data.json
+test.py
+tokenizer.py
+.DS_Store
+
