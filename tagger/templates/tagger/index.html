@@ -3,6 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>HMM</title>
+    <style>
+    .style_S {
+        color: blue;
+        font-weight: bold;
+    }
+    .style_ST {
+        color: blue;
+    }
+    .style_C {
+        color: green;
+        font-weight: bold;
+    }
+    .style_CT {
+        color: green;
+    }
+    .style_P {
+        color: #32CD32;
+        font-weight: bold;
+    }
+    .style_PT {
+        color: #32CD32;
+    }
+    .style_A {
+        color: #8B0000;
+        font-weight: bold;
+    }
+    .style_AT {
+        color: #8B0000;
+    }
+    .style_D {
+        color: #FF0000;
+        font-weight: bold;
+    }
+    .style_DT {
+        color: #FF0000;
+    }
+    </style>
 </head>
 <body>
 {% if tokens %}
@@ -32,6 +69,12 @@ result tokens: {{tokens}} <br>
 	<br>
 	<hr>
 	<br>
-{{corpus}}
+{% if corpus %}
+    {% for addr in corpus reversed %}
+        {% for token in addr %}
+        <span class="style_{{token.1}}">{{token.0}}</span>
+        {% endfor %}<br/>
+    {% endfor %}
+{% endif %}
 </body>
 </html>
