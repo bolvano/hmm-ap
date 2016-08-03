@@ -37,22 +37,24 @@ def index(request):
 
         else:
             address = request.POST.get("address")
+            tokens = regexp_tokenize(address, pattern=r'\d+|[^\r\n\t\f 0-9,]+|,', )
 
-            pkl_file = open(settings.BASE_DIR+"/data/hmm.pkl", 'rb')
-            hmm = pickle.load(pkl_file)
-            pkl_file.close()
+            if tokens:
+                pkl_file = open(settings.BASE_DIR+"/data/hmm.pkl", 'rb')
+                hmm = pickle.load(pkl_file)
+                pkl_file.close()
 
-            tokens = regexp_tokenize(address, pattern=r'\d+|[^\r\n\t\f 0-9]+', )
-            tagged = hmm.tag(tokens)
 
-            tags_file = open(settings.BASE_DIR+"/data/tags.json", 'rb')
+                tagged = hmm.tag(tokens)
 
-            reader = codecs.getreader("utf-8")
-            tags = json.load(reader(tags_file))
+                tags_file = open(settings.BASE_DIR+"/data/tags.json", 'rb')
 
-            return render(request, 'tagger/index.html', {'address': address,
-                                                          'tokens': tokens,
-                                                          'tagged': tagged,
-                                                          'tags': sorted(tags.items(), key=operator.itemgetter(1)) })
+                reader = codecs.getreader("utf-8")
+                tags = json.load(reader(tags_file))
+
+                return render(request, 'tagger/index.html', {'address': address,
+                                                              'tokens': tokens,
+                                                              'tagged': tagged,
+                                                              'tags': sorted(tags.items(), key=operator.itemgetter(1)) })
 
     return render(request, 'tagger/index.html', {})
