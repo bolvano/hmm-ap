@@ -1,0 +1,96 @@
+body {
+    background-color: #fdfdfd;
+    color: #3d4545;
+}
+
+.address-form {
+    margin-top: 70px;
+    padding: 50px 30px;
+    background-color: #E9F0F2;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 15px 0 rgba(199,198,196,1);
+    -moz-box-shadow: 0 0 15px 0 rgba(199,198,196,1);
+    box-shadow: 0 0 15px 0 rgba(199,198,196,1);
+}
+
+.address-input {
+    width: 100% !important;
+}
+
+.address-label {
+    font-size: 110%;
+}
+
+.token-selects-button {
+    margin-top: 30px;
+}
+
+.token-selects {
+    margin-top: 60px;
+}
+
+.token-select-label {
+    margin-left: 25px;
+}
+
+
+/* ТАБЛИЦА */
+
+.corpus-table {
+    margin-top: 60px;
+    margin-bottom: 60px;
+}
+
+.style_S,
+.style_C,
+.style_P,
+.style_A,
+.style_D,
+.style_H,
+.style_K {
+    font-style: italic;
+}
+
+/* улица */
+.style_S,
+.style_ST {
+    color: #0074D9;
+}
+
+/* город */
+.style_C,
+.style_CT {
+    color: #3D9970;
+}
+
+/* населенный пункт */
+.style_P,
+.style_PT {
+    color: #2ECC40;
+}
+
+/* район области */
+.style_A,
+.style_AT {
+    color: #85144b;
+}
+
+/* район города */
+.style_D,
+.style_DT {
+    color: #FF4136;
+}
+
+/* дом */
+.style_H,
+.style_HT {
+    color: #FF851B;
+}
+
+/* корпус */
+.style_K,
+.style_KT {
+    color: #FFDC00;
+}
+
+
