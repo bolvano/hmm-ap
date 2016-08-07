@@ -21,6 +21,21 @@ body {
     font-size: 110%;
 }
 
+.address-random {
+  background-color: transparent;
+  text-decoration: underline;
+  border: none;
+  color: #0074D9;
+  cursor: pointer;
+  font-style: italic;
+  transition: color 0.5s;
+}
+
+.address-random:hover {
+  outline: none;
+  color: #003B6E;
+}
+
 .token-selects-button {
     margin-top: 30px;
 }
