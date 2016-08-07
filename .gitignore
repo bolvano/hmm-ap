@@ -1,6 +1,7 @@
 *.pyc
 __pycache__
 myvenv
+hmmvenv
 db.sqlite3
 /static
 /tagger/migrations/*
@@ -15,4 +16,5 @@ test.py
 tokenizer.py
 .idea
 .DS_Store
+
 

@@ -1,80 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <!-- Libs -->
+    <script src="static/libs/jquery-3.1.0.min.js"></script>
+    <script src="static/libs/tether.min.js"></script>
+    <script src="static/libs/bootstrap.min.js"></script>
+
     <title>HMM</title>
-    <style>
-    .style_S {
-        color: blue;
-        font-weight: bold;
-    }
-    .style_ST {
-        color: blue;
-    }
-    .style_C {
-        color: green;
-        font-weight: bold;
-    }
-    .style_CT {
-        color: green;
-    }
-    .style_P {
-        color: #32CD32;
-        font-weight: bold;
-    }
-    .style_PT {
-        color: #32CD32;
-    }
-    .style_A {
-        color: #8B0000;
-        font-weight: bold;
-    }
-    .style_AT {
-        color: #8B0000;
-    }
-    .style_D {
-        color: #FF0000;
-        font-weight: bold;
-    }
-    .style_DT {
-        color: #FF0000;
-    }
-    </style>
 </head>
+
 <body>
-{% if tokens %}
-input string: {{address}} <br>
-result tokens: {{tokens}} <br>
-	<form method="POST" action="">{% csrf_token %}
-    	<input type="hidden" name="address" value="{{address}}">
-    	<input type="hidden" name="tokens" value="{{tokens}}">
-		tagged:
-{% for t in tagged %}
-{{t.0}}
-    	<select name="token_{{ forloop.counter }}">
-    {% for k,v in tags %}
-        	<option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
-    {% endfor %}
-		</select>
-{% endfor %}<br>
-    	<input type="submit">
+<div class="container">
+
+    {% if not tokens %}
+
+    <div class="address-form row">
+        <form method="POST" action="" class="form-inline"> {% csrf_token %}
+
+            <div class="col-sm-10">
+                <label class="col-sm-3 col-form-label address-label" for="addressInput">Введите адрес: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control address-input" id="addressInput" name="address">
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <button type="submit" class="btn btn-primary address-form-button">Разобрать</button>
+            </div>
+
+        </form>
+    </div>
+
+    {% else %}
+
+    <form method="POST" action=""> {% csrf_token %}
+        <div class="address-form row">
+            <div class="col-sm-10">
+                <label class="col-sm-3 col-form-label address-label" for="addressInput">Адрес: </label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control address-input" name="address" id="addressInput" value="{{address}}" readonly>
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <!-- <button class="btn btn-secondary address-form-button">Изменить</button> -->
+            </div>
+        </div>
+
+        <input type="hidden" name="tokens" value="{{tokens}}">
+
+        <div class="row">
+            <div class="token-selects col-sm-8 offset-sm-2">
+                {% for t in tagged %}
+                <div class="form-group">
+                    <select name="token_{{ forloop.counter }}" id="token_{{ forloop.counter }}" class="custom-select token-select">
+                        {% for k,v in tags %}
+                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="token-select-label" for="token_{{ forloop.counter }}">{{t.0}}</label>
+                </div>
+                {% endfor %}
+                <button class="btn btn-lg btn-success token-selects-button" type="submit">Обучить</button>
+            </div>
+        </div>
     </form>
-{% else %}
-    <form method="POST" action="">{% csrf_token %}
-        Адресная строка:<br>
-        <input type="text" name="address"><br>
-        <input type="submit">
-    </form>
-{% endif %}
-	<br>
-	<hr>
-	<br>
-{% if corpus %}
-    {% for addr in corpus reversed %}
-        {% for token in addr %}
-        <span class="style_{{token.1}}">{{token.0}}</span>
-        {% endfor %}<br/>
-    {% endfor %}
-{% endif %}
+
+    {% endif %}
+
+    <div class="col-sm-10 offset-sm-1">
+        {% if corpus %}
+        <table class="corpus-table table table-striped">
+            <tbody>
+                {% for addr in corpus reversed %}
+                <tr>
+                    <td>
+                        {% for token in addr %}
+                        <span class="style_{{token.1}}">{{token.0}}</span>
+                        {% endfor %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+
+</div> <!-- End of container -->
+
 </body>
 </html>
