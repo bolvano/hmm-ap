@@ -22,7 +22,7 @@
     {% if not tokens %}
 
     <div class="address-form row">
-        <form method="POST" action="" class="form-inline"> {% csrf_token %}
+        <form method="POST" action="/" class="form-inline"> {% csrf_token %}
 
             <div class="col-sm-10">
                 <label class="col-sm-3 col-form-label address-label" for="addressInput">Введите адрес: </label>
@@ -32,7 +32,7 @@
             </div>
 
             <div class="col-sm-2">
-                <button type="submit" class="btn btn-primary address-form-button">Разобрать</button>
+                <button type="submit" class="btn btn-primary address-form-button">Разобрать</button> <br> <button type="submit" name="random" value="true"class="btn btn-primary address-form-button">Разобрать случайный</button>
             </div>
 
         </form>
@@ -40,7 +40,7 @@
 
     {% else %}
 
-    <form method="POST" action=""> {% csrf_token %}
+    <form method="POST" action="/"> {% csrf_token %}
         <div class="address-form row">
             <div class="col-sm-10">
                 <label class="col-sm-3 col-form-label address-label" for="addressInput">Адрес: </label>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/styles.css">
+
+    <!-- Libs -->
+    <script src="static/libs/jquery-3.1.0.min.js"></script>
+    <script src="static/libs/tether.min.js"></script>
+    <script src="static/libs/bootstrap.min.js"></script>
+
+    <title>HMM CORPUS</title>
+</head>
+
+<body>
+<div class="container">
+
+{% if corpus %}
+
+    <form method="POST" action="" class="form-inline"> {% csrf_token %}
+
+    <table class="corpus-table table table-striped">
+        <tbody>
+            {% for addr in corpus reversed %}
+            <tr>
+                <td>
+                    {% for token in addr %}
+                    <span class="style_{{token.1}}">{{token.0}}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <button type="submit" name="index" value="{{ forloop.counter }}" class="btn btn-primary address-form-button">Редактировать</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    </form>
+
+{% else %}
+
+    <form method="POST" action=""> {% csrf_token %}
+
+        <input type="hidden" name="tokens" value="{{tokens}}">
+        <input type="hidden" name="true_index" value="{{true_index}}">
+
+        <div class="row">
+            <div class="token-selects col-sm-8 offset-sm-2">
+                {% for t in corpus_item %}
+                <div class="form-group">
+                    <select name="token_{{ forloop.counter }}" id="token_{{ forloop.counter }}" class="custom-select token-select">
+                        {% for k,v in tags %}
+                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        {% endfor %}
+                    </select>
+                    <label class="token-select-label" for="token_{{ forloop.counter }}">{{t.0}}</label>
+                </div>
+                {% endfor %}
+                <button class="btn btn-lg btn-success token-selects-button" type="submit">Обучить</button>
+            </div>
+        </div>
+    </form>
+
+{% endif %}
+
+
+
+</div> <!-- End of container -->
+
+</body>
+</html>
