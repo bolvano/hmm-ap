@@ -17,7 +17,7 @@ def get_random_address():
     if len(raw):
         a = raw.pop(random.randrange(len(raw)))
         with open(settings.BASE_DIR+"/data/raw.pkl", 'wb') as handle:
-                            pickle.dump(raw, handle)        
+            pickle.dump(raw, handle)
         return a.decode()
     else:
         return "АДРЕСА КОНЧИЛИСЬ("
@@ -56,8 +56,8 @@ def corpus(request):
             corpus_item = corpus[true_index]
             return render(request, 'tagger/corpus.html', {
                 'tokens' : [t[0] for t in corpus_item],
-                'corpus_item': corpus_item, 
-                'true_index': true_index, 
+                'corpus_item': corpus_item,
+                'true_index': true_index,
                 'tags': sorted(tags.items(), key=operator.itemgetter(1))})
     else:
         return render(request, 'tagger/corpus.html', {'corpus': corpus})
