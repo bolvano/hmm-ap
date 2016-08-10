@@ -110,7 +110,7 @@ def test(request):
 
             new_tagged = []
             i = 1
-            for item in random_raw:
+            for item in from_raw:
                 if order == 1:
                     new_tagged.append((item[0],request.POST.get("token_second_"+str(i))))
                 else:
