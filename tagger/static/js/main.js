@@ -1,3 +1,5 @@
+$( document ).ready(function() {
+
 if ($('#map').length) {
     ymaps.ready(initMap);
 }
@@ -72,3 +74,5 @@ function getAddress(coords, input) {
         }
     });
 })(jQuery);
+});
+
