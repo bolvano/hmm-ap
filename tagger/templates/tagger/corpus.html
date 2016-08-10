@@ -23,17 +23,17 @@
 
     <form method="POST" action="" class="form-inline"> {% csrf_token %}
 
-    <table class="corpus-table table table-striped">
+    <table class="corpus-table table">
         <tbody>
             {% for addr in corpus reversed %}
             <tr>
                 <td>
                     {% for token in addr %}
-                    <span class="style_{{token.1}}">{{token.0}}</span>
+                    <div class="style_{{token.1}}">{{token.0}}</div>
                     {% endfor %}
                 </td>
                 <td>
-                    <button type="submit" name="index" value="{{ forloop.counter }}" class="btn btn-secondary address-form-button">Редактировать</button>
+                    <button type="submit" name="index" value="{{ forloop.counter }}" class="btn btn-secondary corpus-edit-button">Редактировать</button>
                 </td>
             </tr>
             {% endfor %}
@@ -61,7 +61,7 @@
                     <label class="token-select-label" for="token_{{ forloop.counter }}">{{t.0}}</label>
                 </div>
                 {% endfor %}
-                <button class="btn btn-lg btn-success token-selects-button" type="submit">Обучить</button>
+                <button class="btn btn-lg btn-success token-selects-button" type="submit">Сохранить</button>
             </div>
         </div>
     </form>

@@ -1,6 +1,9 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,cyrillic);
+
 body {
     background-color: #fdfdfd;
     color: #3d4545;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .address-form {
@@ -48,6 +51,10 @@ body {
     margin-left: 25px;
 }
 
+.corpus-edit-button {
+    margin-top: 10px;
+}
+
 
 /* ТАБЛИЦА */
 
@@ -56,56 +63,118 @@ body {
     margin-bottom: 60px;
 }
 
+.corpus-table div {
+    display: inline-block;
+    margin: 5px 5px 5px 0;
+}
+
+/* КАПЧА */
+
+.captcha-form {
+    margin-bottom: 60px;
+}
+
+
+/* ТЭГИ */
+
 .style_S,
 .style_C,
 .style_P,
 .style_A,
 .style_D,
 .style_H,
-.style_K {
-    font-style: italic;
+.style_K,
+.style_R {
+    font-weight: bold;
 }
 
-/* улица */
 .style_S,
-.style_ST {
-    color: #0074D9;
-}
-
-/* город */
 .style_C,
-.style_CT {
-    color: #3D9970;
+.style_P,
+.style_A,
+.style_D,
+.style_H,
+.style_K,
+.style_R,
+.style_1,
+.style_0,
+
+.style_ST,
+.style_CT,
+.style_PT,
+.style_AT,
+.style_DT,
+.style_HT,
+.style_KT,
+.style_RT {
+    border-radius: 10px;
+    padding: 10px 15px;
+    border: 3px solid;
+    color: #3d4545;
+    background-color: #fdfdfd;
 }
 
-/* населенный пункт */
-.style_P,
-.style_PT {
-    color: #2ECC40;
+/* область */
+.style_R,
+.style_RT {
+    border-color: #FF4136;
+    background-color: rgba(255, 65, 54, 0.1);
 }
 
 /* район области */
 .style_A,
 .style_AT {
-    color: #85144b;
+    border-color: #FF851B;
+    background-color: rgba(255, 133, 27, 0.1);
+}
+
+/* город */
+.style_C,
+.style_CT {
+    border-color: #FFDC00;
+    background-color: rgba(255, 220, 0, 0.1)
+}
+
+/* населенный пункт */
+.style_P,
+.style_PT {
+    border-color: #FFDC00;
+    background-color: rgba(255, 220, 0, 0.1);
 }
 
 /* район города */
 .style_D,
 .style_DT {
-    color: #FF4136;
+    border-color: #2ECC40;
+    background-color: rgba(46, 204, 64, 0.1);
+}
+
+/* улица */
+.style_S,
+.style_ST {
+    border-color: #3D9970;
+    background-color: rgba(61, 153, 112, 0.1);
 }
 
 /* дом */
 .style_H,
 .style_HT {
-    color: #FF851B;
+    border-color: #0074D9;
+    background-color: rgba(0, 116, 217, 0.1);
 }
 
 /* корпус */
 .style_K,
 .style_KT {
-    color: #FFDC00;
+    border-color: #442299;
+    background-color: rgba(68, 34, 153, 0.1);
+}
+
+/* разделитель и мусор */
+.style_1,
+.style_0 {
+    border-color: #3d4545;
+    background-color: rgba(61, 69, 69, 0.1);
 }
 
 

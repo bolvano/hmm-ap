@@ -62,7 +62,7 @@
                 <div class="form-group">
                     <select name="token_{{ forloop.counter }}" id="token_{{ forloop.counter }}" class="custom-select token-select">
                         {% for k,v in tags %}
-                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        <option class="style_{{k}}" value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
                         {% endfor %}
                     </select>
                     <label class="token-select-label" for="token_{{ forloop.counter }}">{{t.0}}</label>
@@ -75,15 +75,15 @@
 
     {% endif %}
 
-    <div class="col-sm-10 offset-sm-1">
+    <div class="col-sm-12">
         {% if corpus %}
-        <table class="corpus-table table table-striped">
+        <table class="corpus-table table">
             <tbody>
                 {% for addr in corpus reversed %}
                 <tr>
                     <td>
                         {% for token in addr %}
-                        <span class="style_{{token.1}}">{{token.0}}</span>
+                        <div class="style_{{token.1}}">{{token.0}}</div>
                         {% endfor %}
                     </td>
                 </tr>

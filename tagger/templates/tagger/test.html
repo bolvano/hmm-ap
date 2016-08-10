@@ -19,7 +19,8 @@
 <body>
 
 <div class="container">
-    <form method="POST" action="/test"> {% csrf_token %}
+
+    <form method="POST" action="/test" class="captcha-form"> {% csrf_token %}
         <div class="address-form row">
             <div class="col-sm-10">
                 <label class="col-sm-3 col-form-label address-label" for="addressFirstInput">Адрес: </label>
@@ -27,9 +28,6 @@
                     <input type="text" class="form-control address-input" name="address_tagged" id="addressFirstInput" value="{% if order == 1  %}{{data.1}}{% else %}{{data.3}}{% endif %}" readonly>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <!-- <button class="btn btn-secondary address-form-button">Изменить</button> -->
-            </div>
         </div>
 
         <div class="row">
@@ -39,7 +37,7 @@
                 <div class="form-group">
                     <select name="token_first_{{ forloop.counter }}" id="token_first_{{ forloop.counter }}" class="custom-select token-select">
                         {% for k,v in tags %}
-                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        <option class="style_{{k}}" value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
                         {% endfor %}
                     </select>
                     <label class="token-select-label" for="token_first_{{ forloop.counter }}">{{t.0}}</label>
@@ -50,7 +48,7 @@
                 <div class="form-group">
                     <select name="token_first_{{ forloop.counter }}" id="token_first_{{ forloop.counter }}" class="custom-select token-select">
                         {% for k,v in tags %}
-                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        <option class="style_{{k}}" value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
                         {% endfor %}
                     </select>
                     <label class="token-select-label" for="token_first_{{ forloop.counter }}">{{t.0}}</label>
@@ -59,7 +57,7 @@
             {% endif %}
             </div>
         </div>
-<br>
+
         <div class="address-form row">
             <div class="col-sm-10">
                 <label class="col-sm-3 col-form-label address-label" for="addressSecondInput">Адрес: </label>
@@ -67,9 +65,6 @@
                     <input type="text" class="form-control address-input" name="address_raw" id="addressSecondInput" value="{% if order == 1  %}{{data.3}}{% else %}{{data.1}}{% endif %}" readonly>
                 </div>
             </div>
-            <div class="col-sm-2">
-                <!-- <button class="btn btn-secondary address-form-button">Изменить</button> -->
-            </div>
         </div>
 
         <div class="row">
@@ -79,7 +74,7 @@
                 <div class="form-group">
                     <select name="token_second_{{ forloop.counter }}" id="token_second_{{ forloop.counter }}" class="custom-select token-select">
                         {% for k,v in tags %}
-                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        <option class="style_{{k}}" value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
                         {% endfor %}
                     </select>
                     <label class="token-select-label" for="token_second_{{ forloop.counter }}">{{t.0}}</label>
@@ -90,7 +85,7 @@
                 <div class="form-group">
                     <select name="token_second_{{ forloop.counter }}" id="token_second_{{ forloop.counter }}" class="custom-select token-select">
                         {% for k,v in tags %}
-                        <option value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
+                        <option class="style_{{k}}" value="{{k}}" {% if k == t.1 %}selected{% endif %}>{{v}}</option>
                         {% endfor %}
                     </select>
                     <label class="token-select-label" for="token_second_{{ forloop.counter }}">{{t.0}}</label>
@@ -99,7 +94,11 @@
             {% endif %}
             </div>
         </div>
-        <button class="btn btn-lg btn-success token-selects-button" type="submit">OK</button>
+        <div class="row">
+            <div class="col-sm-2 offset-sm-5">
+                <button class="btn btn-lg btn-success token-selects-button" type="submit">Подтвердить</button>
+            </div>
+        </div>
     </form>
 
 </div> <!-- End of container -->
